@@ -1,0 +1,10 @@
+edu\fpdual\proyectoERP\conector\Conector.class
+edu\fpdual\proyectoERP\dao\Employees.class
+edu\fpdual\proyectoERP\main\Main.class
+edu\fpdual\proyectoERP\dao\Customer.class
+edu\fpdual\proyectoERP\manager\CustomerManagerC.class
+edu\fpdual\proyectoERP\conector\MySQLConstants.class
+edu\fpdual\proyectoERP\dao\Order.class
+edu\fpdual\proyectoERP\manager\EmployeesManager.class
+edu\fpdual\proyectoERP\manager\OrderManager.class
+edu\fpdual\proyectoERP\pdf\GenerarPdf2.class
