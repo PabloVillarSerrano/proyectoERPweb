@@ -4,61 +4,94 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import edu.fpdual.proyectoERP.conector.Conector;
-import edu.fpdual.proyectoERP.manager.EmployeesManager;
 
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Main.
+ */
 public class Main {
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		//Connects to the DB
-		Connection con = new Conector().getMySQLConnection();
-		
-		try {
-			
-			//IMPRIME: erp2 
-			//System.out.println(con.getCatalog());
-			 		
-			//BUSCAR TODOS LOS EMPLEADOS MOSTRAR TODOS SUS DATOS 
-			//System.out.println(new EmployeesManager().findAll(con));
-			
-			//BUSCAR LOS EMPLEADOS DE LAS CIUDADES QUE EMPIECEN POR...
-			//new EmployeesManager().findAllByNameStartingWith(con, "B").forEach(employees ->System.out.println(employees));
-			 
-			
-			//PARA BUSCAR POR NOMBRE
-			//System.out.println(new CityManager().FindName(con, "Bolton"));	
-			//System.out.println(new EmployeesManager().FindName(con, "Bolton"));	
-			
-			//PARA BUSCAR POR ID
-			//System.out.println(new CityManager().findID(con, 500));
-			//System.out.println(new EmployeesManager().findIDEmp(con, 1));
-
-			
-			//PARA MODIFICAR LA POBLACION DE UNA CIUDAD TENIENDO SU ID
-			//System.out.println(new CityManager().findID(con, 500));
-			//new CityManager().update(con, 500, new BigDecimal("100000"));
-			//System.out.println(new CityManager().findID(con, 500));
-			
-			
-			//PARA INSERTAR UNA CIUDAD ( NO FUNCIONA )		
-			
-//			new CityManager().insert(con, "ciudadInvent", "distritoInvent" , new BigDecimal("100000"));
-//			new CityManager().findAllByNameStartingWith(con, "ciudadIn").forEach(city ->System.out.println(city));
-			
-//			new CityManager().insert(con);
-//			System.out.println(new CityManager().findID(con, 70000));
-			
-			
-			//PARA BORRAR CIUDADES POR ID
-			//new CityManager().delete(con, 500);
 	 
-		}
-		finally {
-			try {
-				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
 
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     * @throws ClassNotFoundException the class not found exception
+     * @throws SQLException the SQL exception
+     */
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        // Connects to the DB
+        Connection con = new Conector().getMySQLConnection();
+        try {
+            // Looks for all the cities in the DB and prints them.
+            // new CityManager().findAll(con).forEach(city ->System.out.println(city));
+            System.out.println(con.getCatalog());
+
+ 
+
+//            ADD CUSTOMERS
+//            new CustomerManagerC().addCustomer(con,30,"Accenture", "Bravo", "Victoria");
+            
+//            DELETE CUSTOMERS
+//            new CustomerManagerC().deleteCustomer(con, 30);
+//            
+            // UPDATE CUSTOMER
+//            Customer customer1 = new Customer();
+//            customer1.setCustomerId(1);
+//            customer1.setCompany("update");
+//            customer1.setFirstName("funciona");
+//            customer1.setLastName("hoy");
+//            new CustomerManagerC().updateCustomer(con, customer1);
+            
+//            CUSTOMERS COMPLETE LIST
+//            new CustomerManagerC().findAll(con).forEach(customer -> System.out.println(customer));
+            
+//            ADD ORDER
+//            new OrderManager().addOrder(con,29,30,27,"2006-01-15 00:00:00");
+            
+//            DELETE ORDER
+//            new OrderManager().deleteOrder(con, 29);
+            
+            
+//            ORDERS COMPLETE LIST
+//            new OrderManager().findAll(con).forEach(order -> System.out.println(order));
+            // FIND ORDER BY ID EMPLEADO
+//            new OrderManager().findByEmployeeId(con, 3).forEach(order -> System.out.println(order));
+//            System.out.println("Lista por ID de empleado(3): " + "\n");
+
+ 
+
+            // FIND ORDER BY ID CLIENTE
+//            System.out.println("Lista por ID de cliente (4): " + "\n");
+//            new OrderManager().findByCustomerId(con, 4).forEach(order -> System.out.println(order));
+
+ 
+
+            
+//            //UPDATE EMPLOYEE
+//            Employee employee1 = new Employee();
+//            employee1.setIdEmpleado(1);
+//            employee1.setCompany("update");
+//            employee1.setCity("Sevilla");
+//            employee1.setFirstName("Vic");
+//            employee1.setEmail("bravomacayov@gmail.com");
+//            new EmployeeManager().updateEmployee(con, employee1);
+//            EMPLOYEE COMPLETE LIST
+//            new EmployeeManager().findAll(con).forEach(employee -> System.out.println(employee));
+
+ 
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+ 
+
+    }
 }
