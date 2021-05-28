@@ -39,6 +39,40 @@
 
 	<body style="background-color: #fff8e1;">
 
+	<!-- MODAL UPDATE -->
+	<div class="modal fade" id="carouselIMG" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-md" role="document">
+			<div class="modal-content">
+				<div class="modal-body" style="text-align: center;">
+
+					<div>
+						<h2>
+							Update del empleado con Id:
+							<%=request.getParameter("EmployeeId")%></h2>
+					</div>
+
+				<div class="pt-4">
+					<form name="updateEmp" action="updateEmp.jsp" method="GET">
+						<label class="px-2"> Id </label><input type="text" name=EmployeeId
+							value="" /> <br>
+							<label class="px-2"> Compañia </label><input
+							type="text" name="Company" value="" /> <br>
+							<label class="px-2"> Ciudad </label><input
+							type="text" name="City" value="" /> <br>
+							<label class="px-2">
+							Nombre </label><input type="text" name="FirstName" value="" /> <br>
+							<label
+							class="px-2"> Email </label><input type="text" name="Email"
+							value="" /><br>
+							 <input type="submit" value="Actualizar cliente" />
+					</form>
+				</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- NAV PC -->
 	 <nav class="navbar py-2 fixed-top ocultarpc" style="background-image: linear-gradient(to right,#ed8323,#ed8323); box-shadow: 0px 0px 0px 0px grey; padding: 0rem 0rem 0rem 0rem; ">
@@ -67,7 +101,7 @@
 	        </a>
 	      </li>
 	      <li class="nav-item mx-3">
-	        <a href="http://localhost:8080/proyectoERPweb/filterPedidos.jsp" style="color:#fff">
+	        <a href="filterPedidos.jsp" style="color:#fff">
 	            PEDIDOS
 	        </a>
 	      </li>
@@ -101,6 +135,7 @@
 			               <th class="px-4 py-2" style="font-size: 1.5em;">Ciudad</th>
    			               <th class="px-4 py-2" style="font-size: 1.5em;">Nombre</th>
    			               <th class="px-4 py-2" style="font-size: 1.5em;">Email</th>
+   			               <th class="px-4 py-2" style="font-size: 1.5em;">Opciones</th>
 			               
 			           </tr>
 			       </thead>
@@ -122,11 +157,14 @@
 			               <td><%= emp.getCity()%></td>
    			               <td><%= emp.getFirstName()%></td>			               
    			               <td><%= emp.getEmail()%></td>
-   			               						   <td>
-						   	<a href="deleteEmp.jsp?id= <%=emp.getId() %>">
-						   		<button type="button" class="delete">Delete</button>
-						   	</a>
-						   </td>               
+   			               	<td><span> 
+							<button type="button" class="update" data-toggle="modal"
+								data-target="#carouselIMG">Update</button>
+							</span>
+							<a href="deleteEmp.jsp?id=<%=emp.getId()%>">
+									<button type="button" class="delete"
+										style="background-color: #ff000094">Delete</button>
+							</a></td>              
 			           </tr>
 			           <%}%>
 			       </tbody>
@@ -140,7 +178,7 @@
 				   <label class="px-2"> Ciudad </label><input type="text" name="City" value=""/>
 	   			   <label class="px-2"> Nombre </label><input type="text" name="FirstName" value=""/>
 	   			   <label class="px-2"> Email </label><input type="text" name="Email" value=""/>
-				    <input type="submit" value="Enter Values"/>
+				    <input type="submit" value="Añadir empleado"/>
 				  </form>
 			  </div>	
 			   
@@ -232,7 +270,11 @@
 	  }
 	}
 	</script>
-	
+		<script>
+		$('#myModal').modal({
+			keyboard : false
+		})
+	</script>
 
   
 </body>

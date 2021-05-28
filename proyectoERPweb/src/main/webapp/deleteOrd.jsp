@@ -6,9 +6,12 @@
 <%@page import= "edu.fpdual.proyectoERP.manager.EmployeesManager" %>
 
 
-<%String id=request.getParameter("id");
+<%
+
+String id=request.getParameter("id");
+
 Connection con = new Conector().getMySQLConnection();
-try (PreparedStatement prepStmt = con.prepareStatement("DELETE FROM Employees WHERE ID="+id)) {
+try (PreparedStatement prepStmt = con.prepareStatement("DELETE FROM Orders WHERE OrderID="+id)) {
 	con.setAutoCommit(false);
 	prepStmt.executeUpdate();
 	con.commit();
@@ -98,7 +101,7 @@ try (PreparedStatement prepStmt = con.prepareStatement("DELETE FROM Employees WH
 		</section>	
 	    <section class="section py-5" >
 			<div class="pt-5 text-center" style="text-align: center; font-family: 'Pattaya', sans-serif;">
-				<a href="http://localhost:8080/proyectoERPweb/filterEmpleados.jsp" style="color:#fff">
+				<a href="filterPedidos.jsp" style="color:#fff">
 		          <button type="button" class="btn botoncta2 btn-rounded" > 
 		            Volver al listado
 		          </button>

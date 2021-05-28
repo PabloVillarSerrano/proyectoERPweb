@@ -16,12 +16,12 @@ String t4=request.getParameter("LastName");
 
 Connection con = new Conector().getMySQLConnection();
 
-try (PreparedStatement prepStmt = con.prepareStatement("INSERT INTO Customers (ID,Company, LastName, FirstName) VALUES ( '"+id+"', '"+t2+"', '"+t3+"', '"+t4+"')")) {
+try (PreparedStatement prepStmt = con.prepareStatement("INSERT INTO Customers (ID,Company,FirstName, LastName) VALUES ( ?,?,?,?)")) {
 	con.setAutoCommit(false);
 	prepStmt.setInt(1, id);
 	prepStmt.setString(2, t2);
-	prepStmt.setString(4, t3);
-	prepStmt.setString(3, t4);
+	prepStmt.setString(3, t3);
+	prepStmt.setString(4, t4);
 	prepStmt.executeUpdate();
 	con.commit();
 } catch (SQLException e) {
@@ -104,8 +104,8 @@ e.printStackTrace();
 	
 	<main>
 
-		<section class="section py-5" >
-			<div class="pt-5 text-center" style="text-align: center; font-family: 'Pattaya', sans-serif;">
+		<section class="mt-5 section text-center py-5">
+			<div class="pt-5 " style="text-align: center; font-family: 'Pattaya', sans-serif;">
 				<span style="font-size: 4em; color: #ed8323">¡Cliente añadido!</span>
 			</div>	
 			

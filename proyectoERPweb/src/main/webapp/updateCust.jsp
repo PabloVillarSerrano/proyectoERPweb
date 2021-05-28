@@ -2,43 +2,35 @@
 <%@page import="java.sql.*,java.util.*"%>
 <%@page import="edu.fpdual.proyectoERP.conector.Conector"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="edu.fpdual.proyectoERP.dao.Employees"%>
-<%@page import= "edu.fpdual.proyectoERP.manager.EmployeesManager" %>
-<%@page import= "edu.fpdual.proyectoERPweb.controladores.AddEmpController" %>
+<%@page import="edu.fpdual.proyectoERP.dao.Customer"%>
+<%@page import= "edu.fpdual.proyectoERP.manager.CustomerManagerC" %>
 
 
-<%
-
-//	Employees employee = new AddEmpController().findEmployee((String)request.getAttribute("EmployeeId"));
-
-String t1=request.getParameter("EmployeeId");
+<% 
+String t1=request.getParameter("CustomerId");
 int id = Integer.parseInt(t1);
 
 String t2=request.getParameter("Company");
-String t3=request.getParameter("City");
-String t4=request.getParameter("FirstName");
-String t5=request.getParameter("Email");
+String t3=request.getParameter("FirstName");
+String t4=request.getParameter("LastName");
 
 Connection con = new Conector().getMySQLConnection();
 
-try (PreparedStatement prepStmt = con.prepareStatement("INSERT INTO Employees (ID,Company,City,FirstName,Email) VALUES ( ?,?,?,?,?)")) {
-	con.setAutoCommit(false);
-	prepStmt.setInt(1, id);
-	prepStmt.setString(2, t2);
-	prepStmt.setString(3, t3);
-	prepStmt.setString(4, t4);
-	prepStmt.setString(5, t5);
+try (PreparedStatement prepStmt = con.prepareStatement("UPDATE Customers SET Company = ?, LastName = ? , FirstName= ? WHERE ID = ?")) 
 
+{
+	con.setAutoCommit(false);
+	prepStmt.setString(1, t2);
+	prepStmt.setString(2, t4);
+	prepStmt.setString(3, t3);
+	prepStmt.setInt(4, id);
 	prepStmt.executeUpdate();
 	con.commit();
 } catch (SQLException e) {
 
 e.printStackTrace();
 }
-
-
-
-%>			
+%>	
 
 		
 <html>
@@ -114,31 +106,30 @@ e.printStackTrace();
 	
 	<main>
 
-		<section class="section text-center py-5" >
-			<div class="py-5 " style="text-align: center; font-family: 'Pattaya', sans-serif;">
-				<span style="font-size: 4em; color: #ed8323">¡Empleado añadido!</span>
+		<section class="mt-5 section text-center py-5" >
+			<div class="pt-5 " style="text-align: center; font-family: 'Pattaya', sans-serif;">
+				<span style="font-size: 4em; color: #ed8323">¡Cliente modificado!</span>
 			</div>	
 			
+			
 			<p><b>Id:</b>
-			   <%= request.getParameter("EmployeeId")%>
+			   <%= request.getParameter("CustomerId")%>
 			</p>
 			<p><b>Compañia:</b>
 			   <%= request.getParameter("Company")%>
 			</p>
-				<p><b>Ciudad:</b>
-			   <%= request.getParameter("City")%>
-			</p>
-				<p><b>Nombre:</b>
+						<p><b>Nombre:</b>
 			   <%= request.getParameter("FirstName")%>
 			</p>
-				<p><b>Email:</b>
-			   <%= request.getParameter("Email")%>
+				<p><b>Apellido:</b>
+			   <%= request.getParameter("LastName")%>
 			</p>
 			
+			
 		</section>	
-	    <section class="section  text-center" >
-			<div class="pt-5 " style="text-align: center; font-family: 'Pattaya', sans-serif;">
-				<a href="filterEmpleados.jsp" style="color:#fff">
+	    <section class="section py-5" >
+			<div class="text-center" style="text-align: center; font-family: 'Pattaya', sans-serif;">
+				<a href="filterClientes.jsp" style="color:#fff">
 		          <button type="button" class="btn botoncta2 btn-rounded" > 
 		            Volver al listado
 		          </button>

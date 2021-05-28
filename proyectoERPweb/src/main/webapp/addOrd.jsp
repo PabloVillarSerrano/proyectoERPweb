@@ -1,6 +1,6 @@
 <%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <%@page import="java.sql.*,java.util.*"%>
 <%@page import="edu.fpdual.proyectoERP.conector.Conector"%>
 <%@page import="java.sql.Connection"%>
@@ -21,8 +21,7 @@ String t4 = request.getParameter("OrderDate");
 
 Connection con = new Conector().getMySQLConnection();
 
-try (PreparedStatement prepStmt = con
-		.prepareStatement("INSERT INTO Orders (OrderID, EmployeeID, CustomerID, OrderDate) VALUES ( ?, ?, ?, ?)")) {
+try (PreparedStatement prepStmt = con.prepareStatement("INSERT INTO Orders (OrderID, EmployeeID, CustomerID, OrderDate) VALUES ( ?, ?, ?, ?)")) {
 	con.setAutoCommit(false);
 	prepStmt.setInt(1, id1);
 	prepStmt.setInt(2, id2);
@@ -137,20 +136,18 @@ try (PreparedStatement prepStmt = con
 			</p>
 
 
-
-
 		</section>
 		<section class="section ">
 
 
 			<%
-			new GenerarPdf2().createDocument(new File("C:\\Users\\pablo.villar.serrano\\Desktop\\pruebaBuena2.pdf"), id1, id2, id3,
-					t4);
+			String strNombreDelPDF = id1+ ".pdf";
+			new GenerarPdf2().createDocument(new File("C:\\Users\\pablo.villar.serrano\\Desktop\\Pedido con id" + strNombreDelPDF), id1, id2, id3,t4);
 			%>
 
 			<div class="text-center"
 				style="text-align: center; font-family: 'Pattaya', sans-serif;">
-				<a href="http://localhost:8080/proyectoERPweb/filterPedidos.jsp"
+				<a href="filterPedidos.jsp"
 					style="color: #fff">
 					<button type="button" class="btn botoncta2 btn-rounded">
 						Volver al listado</button>
